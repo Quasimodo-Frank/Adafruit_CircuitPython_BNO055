@@ -8,7 +8,7 @@ import adafruit_bno055
 
 i2c = board.I2C()
 
-sensor = adafruit_bno055.BNO055_I2C(i2c)
+sensor = adafruit_bno055.BNO055_I2C(i2c, 0x29)
 
 # Set the sensor to compass mode
 sensor.mode = adafruit_bno055.COMPASS_MODE
