@@ -23,10 +23,11 @@ import flask
 
 import adafruit_bno055
 
-i2c = busio.I2C(board.SCL, board.SDA)
+#i2c = busio.I2C(board.SCL, board.SDA)
+i2c = board.I2C()  # uses board.SCL and board.SDA
 
 # Create the BNO sensor connection.
-bno = adafruit_bno055.BNO055_I2C(i2c)
+bno = adafruit_bno055.BNO055_I2C(i2c, 0x29)
 
 # Application configuration below.  You probably don't need to change these values.
 
@@ -121,8 +122,19 @@ def bno_sse():
         }
         yield "data: {0}\n\n".format(json.dumps(data))
 
+        print("Temperature: {} degrees C".format(bno.temperature))
+        print("Accelerometer (m/s^2): {}".format(bno.acceleration))
+        print("Magnetometer (microteslas): {}".format(bno.magnetic))
+        print("Gyroscope (rad/sec): {}".format(bno.gyro))
+        print("Euler angle: {}".format(bno.euler))
+        print("Quaternion: {}".format(bno.quaternion))
+        print("Linear acceleration (m/s^2): {}".format(bno.linear_acceleration))
+        print("Gravity (m/s^2): {}".format(bno.gravity))
+        print()
+        print()
 
-@app.before_first_request
+
+#@app.before_first_request
 def start_bno_thread():
     # Start the BNO thread right before the first request is served.  This is
     # necessary because in debug mode flask will start multiple main threads so
@@ -172,4 +184,8 @@ if __name__ == "__main__":
     # reloading of the server on changes.  Also make the server threaded
     # so multiple connections can be processed at once (very important
     # for using server sent events).
+
+    with app.app_context():
+        start_bno_thread()
+
     app.run(host="0.0.0.0", debug=True, threaded=True)
