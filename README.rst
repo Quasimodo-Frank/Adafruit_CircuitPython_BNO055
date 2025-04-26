@@ -96,6 +96,12 @@ API documentation for this library can be found on `Read the Docs <https://docs.
 
 For information on building library documentation, please check out `this guide <https://learn.adafruit.com/creating-and-sharing-a-circuitpython-library/sharing-our-docs-on-readthedocs#sphinx-5-1>`_.
 
+Additional Useful Links
+=======================
+1. https://cdn-learn.adafruit.com/downloads/pdf/adafruit-bno055-absolute-orientation-sensor.pdf
+2. https://mischianti.org/bno055-for-esp32-esp8266-and-arduino-wiring-and-advanced-bosch-library-2/
+3. https://learn.adafruit.com/bno055-absolute-orientation-sensor-with-raspberry-pi-and-beaglebone-black/webgl-example
+
 Contributing
 ============
 
